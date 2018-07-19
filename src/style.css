@@ -1,0 +1,38 @@
+.bar{
+    fill: #0099FfFf;
+
+
+}
+
+.bar2{
+    fill:#00B4F1;
+
+}
+.highlightbar{
+    fill:#0055F1;
+    stroke:#ff9900;
+    stroke-width: 4px;
+}
+.seperator{
+    stroke:#888888;
+    stroke-dasharray:4;
+}
+.letter{
+    display: inline-block;
+    font-weight: 700;
+    font-size: 2em;
+    margin: 0.2em;
+    position: relative;
+    fill: #00B4F1;
+    transform-style: preserve-3d;
+    z-index: 1;
+}
+.infobox{
+    fill:#000000;
+    opacity: 0.9;
+}
+text{
+    fill: #FFFFFF;
+    font-family:Arial;
+    font-weight:900;
+}
