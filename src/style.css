@@ -8,6 +8,10 @@
     fill:#00B4F1;
 
 }
+.nohighlightbar{
+
+    fill-opacity:0.1;
+}
 .highlightbar{
     fill:#0055F1;
     stroke:#ff9900;

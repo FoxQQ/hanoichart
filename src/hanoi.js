@@ -64,16 +64,23 @@ class HanoiChart extends BasicChart{
             .data(data)
             .enter()
             .append('rect')
+            .attr('x',centerline)
+            .attr('y', (d,i)=>yScale(i)+barheight/2)
+            .attr('width',0)
+            .attr('height',0)
+            .on('mouseover',overeffect)
+            .on('mouseout',outeffect)
+            .transition()
+            .duration(500)
             .attr('x',(d,i)=>centerline-xScale(d[1])/2)
             .attr('y',(d,i)=>yScale(i))
             .attr('width',(d)=>xScale(d[1]))
             .attr('height',barheight)
             .attr('class',(d,i)=>i%2==0?'bar':'bar2')
-            .attr({rx:10,ry:10})
-            .on('mouseover',overeffect)
-            .on('mouseout',outeffect);
+            .attr({rx:10,ry:10});
 
-        this.g2.selectAll('text')
+
+        this.g3 = this.chartcanvas.append('g').selectAll('text')
             .data(data)
             .enter().append('text')
             .attr('x',textline)
@@ -85,9 +92,15 @@ class HanoiChart extends BasicChart{
         var corner=2;
         function overeffect(d,i){
             var coords = [0,0];
+            let scalefactor=0.5;
             coords = d3.mouse(this);
             d3.select(this)
-                .attr('class','highlightbar')
+                .attr('class','highlightbar');
+            d3.selectAll('.bar')
+                .data(data)
+                .attr('class','nohighlightbar');
+            d3.selectAll('.bar2')
+                .attr('class','nohighlightbar');
             var infog=d3.select('svg').select('g')
                 .append('g')
                 .attr('id','info');
@@ -105,6 +118,13 @@ class HanoiChart extends BasicChart{
 
         function outeffect(d,i){
             d3.select(this).attr('class',i%2==0?'bar':'bar2');
+
+            d3.selectAll('.nohighlightbar')
+                .data(data)
+                .attr('class',(d,j)=>{
+                    console.log(d,i);
+                    return j%2==0?'bar':'bar2';
+                });
             d3.select('#info').remove();
         }
 
