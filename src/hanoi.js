@@ -71,7 +71,7 @@ class HanoiChart extends BasicChart{
             .on('mouseover',overeffect)
             .on('mouseout',outeffect)
             .transition()
-            .duration(500)
+            .duration(2500)
             .attr('x',(d,i)=>centerline-xScale(d[1])/2)
             .attr('y',(d,i)=>yScale(i))
             .attr('width',(d)=>xScale(d[1]))
